@@ -1,6 +1,0 @@
-[32mINFO    [0m common.logger:test_product_crud.py:28 开始执行登录测试
-[32mINFO    [0m common.logger:test_product_crud.py:34 登录测试通过
-[32mINFO    [0m common.logger:test_product_crud.py:37 进入商品列表并点击添加商品
-[32mINFO    [0m common.logger:test_product_crud.py:42 已进入添加商品页面
-[32mINFO    [0m common.logger:test_product_crud.py:45 开始填写商品基本信息（第一步）
-[32mINFO    [0m common.logger:test_product_crud.py:49 选择分类: ['服装', 'T恤']

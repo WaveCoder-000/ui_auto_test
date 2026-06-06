@@ -1,1 +1,0 @@
-{"name": "商品新增-查询-修改-删除完整闭环", "status": "passed", "start": 1780128725765, "stop": 1780128788415, "uuid": "528609e1-ddb9-45b7-b5c2-c5d5af0f516d", "testCaseId": "2e386211038043a64a3dfc1b20fd2420", "fullName": "testcases.test_product_crud.TestProductCRUD#test_product_crud_cycle"}
