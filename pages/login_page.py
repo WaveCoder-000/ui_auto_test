@@ -31,9 +31,7 @@ class LoginPage(BasePage):
 
     def click_login_btn(self):
         """点击登录按钮"""
-        wait = WebDriverWait(self.driver, 10)
-        login_btn = wait.until(EC.element_to_be_clickable(self.LOGIN_BUTTON))
-        login_btn.click()
+        self.click_element(self.LOGIN_BUTTON)
 
     def login(self, username=USERNAME, password=PASSWORD):
         """执行完整登录操作"""

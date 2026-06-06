@@ -1,0 +1,13 @@
+# Python 缓存文件
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 虚拟环境
+.venv/
+venv/
+
+# 测试报告 (如果不想上传的话)
+allure-results/
+reports/
+*.html

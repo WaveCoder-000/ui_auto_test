@@ -6,39 +6,23 @@ import time
 
 class Step3BasicInfo(BasePage):
 
-    SELECT_PRO=(By.XPATH,"/html/body/div[1]/div/div/div[2]/section/div/div/div[4]/form/div[1]/div/div")
-    # ---------- 颜色输入与增加 ----------
-    COLOR_INPUT = (By.XPATH, "/html/body/div[1]/div/div/div[2]/section/div/div/div[4]/form/div[2]/div[2]/div[1]/div/div[1]/div/div[2]/div/input")
-    ADD_COLOR_BTN = (By.XPATH, "/html/body/div[1]/div/div/div[2]/section/div/div/div[4]/form/div[2]/div[2]/div[1]/div/div[1]/div/button/span")
-    DELETE_COLOR=(By.XPATH,"")
-
+    from path.product.add_product import (
+    SELECT_PRO,COLOR_INPUT,ADD_COLOR_BTN,REFRESH_LIST_BTN,SYNC_PRICE_BTN,SYNC_STOCK_BTN,NET_BTN3,TIP_BTN_PATH
+    )
     def select_attribute_type(self, option_text: str):
-        """选择属性类型的下拉选项"""
-        # 1. 点击属性类型对应的下拉框
-        trigger = WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(self.SELECT_PRO)
-        )
-        trigger.click()
+        self.click_element(self.SELECT_PRO)
         # 2. 选择目标选项
-        option = WebDriverWait(self.driver, 10).until(
+        WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((By.XPATH,
                                         f"//li[contains(@class,'el-select-dropdown__item') and .//span[text()='{option_text}']]"))
-        )
-        option.click()
-
-    # ===================== 【正确】尺码复选框 核心方法 =====================
-
+        ).click()
 
     # ---------- 尺码复选框（动态定位） ----------
-    def _get_size_checkbox_locator(self, size_value: str):
+    def get_size_checkbox_locator(self, size_value: str):
         # 直接查找文本为 size_value（如'30'）的复选框 label，不依赖“尺码”文字
         return By.XPATH, f"//label[contains(@class,'el-checkbox') and .//span[@class='el-checkbox__label' and text()='{size_value}']]"
 
     def _clear_all_selected_sizes(self):
-        """
-        只清除【尺码】区域内已选中的复选框，不会碰颜色
-        """
-        # 1. 先找到“尺码：”后面那个 el-checkbox-group
         size_group_loc = (
             By.XPATH,
             "//div[contains(text(),'尺码')]/div[@class='el-checkbox-group']"
@@ -63,11 +47,6 @@ class Step3BasicInfo(BasePage):
             """, elem)
             time.sleep(0.2)
 
-    # ---------- 刷新列表按钮 ----------
-    REFRESH_LIST_BTN = (By.XPATH, "/html/body/div[1]/div/div/div[2]/section/div/div/div[4]/form/div[2]/div[2]/button[1]/span")
-    SYNC_PRICE_BTN = (By.XPATH, "/html/body/div[1]/div/div/div[2]/section/div/div/div[4]/form/div[2]/div[2]/button[2]/span")
-    SYNC_STOCK_BTN = (By.XPATH, "/html/body/div[1]/div/div/div[2]/section/div/div/div[4]/form/div[2]/div[2]/button[3]/span")
-
     # ---------- 私有操作方法 ----------
     def _add_color(self, color_name: str):
         color_input = WebDriverWait(self.driver, 10).until(
@@ -75,19 +54,17 @@ class Step3BasicInfo(BasePage):
         )
         color_input.clear()
         color_input.send_keys(color_name)
-        add_btn = WebDriverWait(self.driver, 10).until(
+        WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable(self.ADD_COLOR_BTN)
-        )
-        add_btn.click()
+        ).click()
         # 等待颜色复选框出现，确保已添加
-        checkbox = WebDriverWait(self.driver, 5).until(
+        WebDriverWait(self.driver, 5).until(
             EC.element_to_be_clickable((By.XPATH,
                                         f"//label[contains(@class,'el-checkbox') and .//span[@class='el-checkbox__label' and text()='{color_name}']]"))
-        )
-        checkbox.click()
+        ).click()
 
     def _select_size(self, size_value: str):
-        locator = self._get_size_checkbox_locator(size_value)
+        locator = self.get_size_checkbox_locator(size_value)
         check_elem = WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable(locator)
         )
@@ -101,26 +78,6 @@ class Step3BasicInfo(BasePage):
             except Exception:
                 # 若普通点击失败，使用 JavaScript 点击
                 self.driver.execute_script("arguments[0].click();", check_elem)
-
-
-    def _refresh_list(self):
-        # 点击“刷新列表”按钮
-        refresh_btn = WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(self.REFRESH_LIST_BTN)
-        )
-        refresh_btn.click()
-
-        # 等待确认弹框出现，并点击“确定”按钮
-        confirm_btn = WebDriverWait(self.driver, 5).until(
-            EC.element_to_be_clickable((By.XPATH, "/html/body/div[7]/div/div/div[3]/button[2]/span"))
-        )
-        confirm_btn.click()
-
-        # 等待表格至少出现一行数据（刷新完成）
-        WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located(
-                (By.XPATH, "//table[contains(@class, 'el-table__body')]//tr[contains(@class, 'el-table__row')]"))
-        )
 
     def _fill_sku_row(self, color: str, size: str, sale_price: str, promotion_price: str,
                       stock: str, stock_warning: str, sku_code: str):
@@ -160,27 +117,23 @@ class Step3BasicInfo(BasePage):
         print("  SKU行填写完成")
 
     def _sync_price(self):
-        btn = WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(self.SYNC_PRICE_BTN)
-        )
-        btn.click()
-
-        # 等待确认弹框出现，并点击“确定”按钮
-        confirm_btn = WebDriverWait(self.driver, 5).until(
-            EC.element_to_be_clickable((By.XPATH, "/html/body/div[7]/div/div/div[3]/button[2]/span"))
-        )
-        confirm_btn.click()
+        self.click_element(self.SYNC_PRICE_BTN)
+        self.click_element(self.TIP_BTN_PATH)
 
     def _sync_stock(self):
-        btn = WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(self.SYNC_STOCK_BTN)
+        self.click_element(self.SYNC_STOCK_BTN)
+        self.click_element(self.TIP_BTN_PATH)
+
+    def _refresh_list(self):
+    #     # 点击“刷新列表”按钮
+        self.click_element(self.REFRESH_LIST_BTN)
+        self.click_element(self.TIP_BTN_PATH)
+
+        # 等待表格至少出现一行数据（刷新完成）
+        WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located(
+                (By.XPATH, "//table[contains(@class, 'el-table__body')]//tr[contains(@class, 'el-table__row')]"))
         )
-        btn.click()
-        # 等待确认弹框出现，并点击“确定”按钮
-        confirm_btn = WebDriverWait(self.driver, 5).until(
-            EC.element_to_be_clickable((By.XPATH, "/html/body/div[7]/div/div/div[3]/button[2]/span"))
-        )
-        confirm_btn.click()
 
     def upload_attribute_image(self, image_path: str,image_path1:str):
         """上传属性图片"""
@@ -256,8 +209,5 @@ class Step3BasicInfo(BasePage):
         self.driver.switch_to.default_content()
         time.sleep(0.5)
 
-    NET_BTN=(By.XPATH,"/html/body/div[1]/div/div/div[2]/section/div/div/div[4]/form/div[7]/div/div/button[2]")
     def net_btn(self):
-        wait = WebDriverWait(self.driver, 10)
-        net_btn = wait.until(EC.element_to_be_clickable(self.NET_BTN))
-        net_btn.click()
+        self.click_element(self.NET_BTN3)

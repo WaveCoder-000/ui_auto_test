@@ -13,7 +13,7 @@ from pages.add_product.step4_relation import Step4BasicInfo
 # from pages.product_search_and_delete import ProductListPage
 # from pages.add_product_page import AddProductPage
 from pages.edit_product_page import EditProductPage
-from pages.common_btn import CommonPage
+from pages.side_common_btn import CommonPage
 from config.settings import USERNAME, PASSWORD
 from pages.login_page import LoginPage
 from pages.add_product.step1_basic_info import Step1BasicInfo
@@ -134,6 +134,7 @@ class TestProductCRUD:
         step4 = Step4BasicInfo(driver)
         step4.move_topic_to_right("夏天应该穿什么")
         time.sleep(8)
+        # 现在已经能自动构建了，但是这是针对webhook的
 
 
 

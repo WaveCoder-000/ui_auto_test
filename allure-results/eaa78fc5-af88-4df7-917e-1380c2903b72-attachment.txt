@@ -1,0 +1,30 @@
+[32mINFO    [0m common.logger:test_product_crud.py:28 开始执行登录测试
+[32mINFO    [0m common.logger:test_product_crud.py:34 登录测试通过
+[32mINFO    [0m common.logger:test_product_crud.py:37 进入商品列表并点击添加商品
+[32mINFO    [0m common.logger:test_product_crud.py:42 已进入添加商品页面
+[32mINFO    [0m common.logger:test_product_crud.py:45 开始填写商品基本信息（第一步）
+[32mINFO    [0m common.logger:test_product_crud.py:49 选择分类: ['服装', 'T恤']
+[32mINFO    [0m common.logger:test_product_crud.py:53 选择品牌: ['小米']
+[32mINFO    [0m common.logger:test_product_crud.py:69 新增商品: 名称=自动化测试商品_822604, 货号=2484483779710
+[32mINFO    [0m common.logger:test_product_crud.py:74 开始填写促销信息（第二步）
+[32mINFO    [0m common.logger:test_product_crud.py:106 开始填写商品属性和SKU（第三步）
+[32mINFO    [0m common.logger:test_product_crud.py:122 上传商品相册图片
+[32mINFO    [0m common.logger:test_product_crud.py:135 开始填写关联信息并提交（第四步）
+[32mINFO    [0m common.logger:test_product_crud.py:139 移动专题: 大牌手机低价秒
+[32mINFO    [0m common.logger:test_product_crud.py:145 商品新增提交完成
+[32mINFO    [0m common.logger:test_product_crud.py:148 开始查询新增商品
+[32mINFO    [0m common.logger:test_product_crud.py:156 查询条件: 名称=自动化测试商品_822604, 货号=2484483779710
+[32mINFO    [0m common.logger:test_product_crud.py:163 查询完成
+[32mINFO    [0m common.logger:test_product_crud.py:167 重置搜索条件，准备编辑
+[32mINFO    [0m common.logger:test_product_crud.py:170 开始编辑商品
+[32mINFO    [0m common.logger:test_product_crud.py:175 进入编辑页面
+[32mINFO    [0m common.logger:test_product_crud.py:178 修改基本信息（第一页）
+[32mINFO    [0m common.logger:test_product_crud.py:197 编辑后商品: 名称=自动化测试商品_797616, 货号=3166799798911
+[32mINFO    [0m common.logger:test_product_crud.py:201 修改促销信息（第二页）
+[32mINFO    [0m common.logger:test_product_crud.py:234 修改商品属性（第三页）
+[32mINFO    [0m common.logger:test_product_crud.py:256 修改关联信息（第四步）
+[32mINFO    [0m common.logger:test_product_crud.py:260 移动新专题: 夏天应该穿什么
+[32mINFO    [0m common.logger:test_product_crud.py:266 商品编辑完成并保存
+[32mINFO    [0m common.logger:test_product_crud.py:269 开始删除商品
+[32mINFO    [0m common.logger:test_product_crud.py:274 删除条件: 名称=自动化测试商品_797616, 货号=3166799798911
+[32mINFO    [0m common.logger:test_product_crud.py:280 商品CRUD闭环测试全部执行完毕
