@@ -38,7 +38,7 @@ def create_chrome_driver():
 
     else:
         # --- Windows 配置 (你的本地开发环境) ---
-        print("💻 检测到 Windows 环境，使用配置文件路径...")
+        print("检测到 Windows 环境，使用配置文件路径...")
 
         # 这里使用你提到的“写在别的文件里的路径”
         if CHROME_DRIVER_PATH is None:

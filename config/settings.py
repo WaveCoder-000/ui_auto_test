@@ -1,6 +1,5 @@
 # 全局配置
 BASE_URL = "http://localhost:5173"             # 你的基地址
-# BASE_URL = "http://localhost:5000"         #linux的基地址
 LOGIN_PATH = "/login"                       # 登录页路径（请根据实际修改）
 LOGIN_URL = BASE_URL + LOGIN_PATH
 
@@ -10,7 +9,7 @@ PASSWORD = "macro123"
 # Chrome 驱动绝对路径（你的路径）
 # CHROME_DRIVER_PATH = r"D:\gugedriver\chromedriver-win64\chromedriver.exe"
 # 注意中间加了 \\chromedriver-win64
-#
+#这里是你的驱动路劲地址
 CHROME_DRIVER_PATH = r"D:\gugedriver\chromedriver-win64\chromedriver.exe"
 # 等待时间（秒）
 IMPLICIT_WAIT = 10
