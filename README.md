@@ -5,7 +5,7 @@
 
 **被测系统源码：**
 - 后端服务: [macrozheng/mall](https://github.com/macrozheng/mall)
-- 前端页面: [macrozheng/mall-admin-web](https://github.com/macrozheng/mall-admin-web)
+- 前端页面: [macrozheng/mall-app-web](https://github.com/macrozheng/mall-app-web)
 
 ## 🛠️ 环境准备与部署
 在运行测试前，请确保已在本地成功部署上述前后端项目。
